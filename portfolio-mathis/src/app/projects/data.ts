@@ -6,6 +6,8 @@ export type Project = {
   stack: string[];
   role: string;
   highlights: string[];
+  photos: string[];
+  video?: string;
 };
 
 export const projects: Project[] = [
@@ -24,6 +26,7 @@ export const projects: Project[] = [
       "Composants reutilisables pour accelerer l'ajout de nouveaux indicateurs",
       "Attention portee a la lisibilite et aux temps de chargement",
     ],
+    photos: [],
   },
   {
     slug: "app-fitness",
@@ -40,6 +43,7 @@ export const projects: Project[] = [
       "Suivi de progression avec graphiques d'evolution",
       "Objectifs personnalisables par utilisateur",
     ],
+    photos: [],
   },
   {
     slug: "landing-saas",
@@ -56,6 +60,7 @@ export const projects: Project[] = [
       "Responsive mobile-first avec Tailwind CSS",
       "Bonnes pratiques SEO de base (metadonnees, structure semantique)",
     ],
+    photos: [],
   },
 ];
 

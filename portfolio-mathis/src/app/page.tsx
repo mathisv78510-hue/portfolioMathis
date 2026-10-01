@@ -15,26 +15,23 @@ const highlights = [
   { label: "Skills", value: "20+" },
 ];
 
-const skills = [
-  "JavaScript",
-  "TypeScript",
-  "React",
-  "Next.js",
-  "Node.js",
-  "Express",
-  "PostgreSQL",
-  "MySQL",
-  "SQL Server",
-  "Git",
-  "Figma",
-  "Python",
-  "PHP",
-  "CSS / HTML",
-  "C#",
-  "Unity",
-  "Arduino",
-  "Linux",
-  "Windows Server",
+const skillGroups = [
+  {
+    label: "Langages",
+    items: ["JavaScript", "TypeScript", "HTML", "CSS", "Python", "PHP", "C#"],
+  },
+  {
+    label: "Frameworks & librairies",
+    items: ["React", "Next.js", "Node.js", "Express", "Unity"],
+  },
+  {
+    label: "Bases de donnees",
+    items: ["PostgreSQL", "MySQL", "SQL Server"],
+  },
+  {
+    label: "Outils",
+    items: ["Git", "Figma", "Arduino", "Linux", "Windows Server"],
+  },
 ];
 
 const timeline = [
@@ -144,19 +141,21 @@ export default function Home() {
             <span className="section-num">01.</span>
             <h2 className="section-title">A propos</h2>
           </div>
-          <p className="lede">
-            Je suis actuellement en formation et je cherche a rejoindre une entreprise pour une
-            alternance ou un stage, afin de monter en competences rapidement. J&apos;aime transformer
-            une idee en produit clair, fonctionnel et bien structure — que ce soit un site web, une
-            application mobile ou un jeu video.
-          </p>
-          <div className="highlights" aria-label="Chiffres cles">
-            {highlights.map((item) => (
-              <div key={item.label}>
-                <p className="highlight-value mono">{item.value}</p>
-                <p className="highlight-label">{item.label}</p>
-              </div>
-            ))}
+          <div className="content-card">
+            <p className="lede">
+              Je suis actuellement en formation et je cherche a rejoindre une entreprise pour une
+              alternance ou un stage, afin de monter en competences rapidement. J&apos;aime
+              transformer une idee en produit clair, fonctionnel et bien structure — que ce soit un
+              site web, une application mobile ou un jeu video.
+            </p>
+            <div className="highlights" aria-label="Chiffres cles">
+              {highlights.map((item) => (
+                <div className="highlight-item" key={item.label}>
+                  <p className="highlight-value mono">{item.value}</p>
+                  <p className="highlight-label">{item.label}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -165,11 +164,18 @@ export default function Home() {
             <span className="section-num">02.</span>
             <h2 className="section-title">Competences</h2>
           </div>
-          <ul className="skills-grid" aria-label="Liste des competences">
-            {skills.map((skill) => (
-              <li key={skill}>{skill}</li>
+          <div className="content-card skills-card">
+            {skillGroups.map((group) => (
+              <div className="skill-group" key={group.label}>
+                <p className="skill-group-label mono">{group.label}</p>
+                <ul className="skill-tags" aria-label={group.label}>
+                  {group.items.map((skill) => (
+                    <li key={skill}>{skill}</li>
+                  ))}
+                </ul>
+              </div>
             ))}
-          </ul>
+          </div>
         </section>
 
         <section id="experience">
@@ -177,16 +183,18 @@ export default function Home() {
             <span className="section-num">03.</span>
             <h2 className="section-title">Parcours</h2>
           </div>
-          <div className="timeline" aria-label="Parcours et experiences">
-            {timeline.map((step) => (
-              <article className="timeline-item" key={step.title}>
-                <p className="timeline-period">{step.period}</p>
-                <div>
-                  <h3>{step.title}</h3>
-                  <p>{step.detail}</p>
-                </div>
-              </article>
-            ))}
+          <div className="content-card">
+            <div className="timeline" aria-label="Parcours et experiences">
+              {timeline.map((step) => (
+                <article className="timeline-item" key={step.title}>
+                  <p className="timeline-period">{step.period}</p>
+                  <div>
+                    <h3>{step.title}</h3>
+                    <p>{step.detail}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
