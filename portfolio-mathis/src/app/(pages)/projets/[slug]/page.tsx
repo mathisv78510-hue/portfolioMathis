@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getProjectBySlug, projects } from "../data";
+import { PageBlobs } from "../../../components/page-blobs";
 
 function PhotoIcon() {
   return (
@@ -50,8 +51,9 @@ export default async function ProjectPage({
 
   return (
     <div className="project-detail-shell">
+      <PageBlobs />
       <div className="project-detail">
-        <Link href="/#projects" className="back-link mono">
+        <Link href="/projets" className="back-link mono">
           ← Retour aux projets
         </Link>
 
@@ -101,7 +103,7 @@ export default async function ProjectPage({
             <p>
               Aucune capture pour l&apos;instant. Depose des images ou une video dans{" "}
               <code className="mono">public/projects/{project.slug}/</code>, puis reference-les
-              dans <code className="mono">src/app/projects/data.ts</code> (champs{" "}
+              dans <code className="mono">src/app/projets/data.ts</code> (champs{" "}
               <code className="mono">photos</code> et <code className="mono">video</code>).
             </p>
           </div>
@@ -118,10 +120,10 @@ export default async function ProjectPage({
         </ul>
 
         <div className="project-detail-footer">
-          <Link href="/#projects" className="btn">
+          <Link href="/projets" className="btn">
             Voir les autres projets
           </Link>
-          <Link href="/#contact" className="btn btn-ghost">
+          <Link href="/a-propos#contact" className="btn btn-ghost">
             Me contacter
           </Link>
         </div>
