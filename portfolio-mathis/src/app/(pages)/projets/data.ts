@@ -12,21 +12,32 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "dashboard-analytics",
-    title: "Dashboard Analytics",
+    slug: "Otter-Able",
+    title: "Otter-Able",
     description:
-      "Interface data pour visualiser des indicateurs business en temps reel avec filtres interactifs.",
+      "Un jeux vidéo party game/casual game qui se joue entre 2 a 4 joueurs avec du combat , du multi , un classement et des mini jeux , La Loutre avec le plus de point gagne.",
     longDescription:
-      "Ce projet centralise plusieurs indicateurs business dans un tableau de bord unique. L'objectif etait de rendre des donnees complexes faciles a lire en un coup d'oeil, tout en gardant l'application rapide meme avec beaucoup de donnees affichees en meme temps.",
-    stack: ["Next.js", "TypeScript", "Chart.js"],
-    role: "Developpement front-end et integration des graphiques",
+      "Un jeu vidéo party game/casual game qui se joue entre 2 à 4 joueurs avec du combat, du multi, un classement et des mini-jeux, La Loutre avec le plus de points gagne. ils gagnent des points en terminant des mini-jeux. De plus, il y a plein d'interactions possibles entre les loutres et les objets pour dynamiser le jeu .",
+
+    stack: ["Unity", "C#", "Netcode pour GameObjects", "Git", "NavMesh", "Méthode Agile / Scrum", "jira"],
+    role: "Developpement gameplay , intéractions et multijoueur sous Unity",
     highlights: [
-      "Graphiques interactifs (courbes, barres, repartition) avec Chart.js",
-      "Filtres combinables (periode, categorie, statut) sans rechargement de page",
-      "Composants reutilisables pour accelerer l'ajout de nouveaux indicateurs",
-      "Attention portee a la lisibilite et aux temps de chargement",
+    "Party game de 2 à 4 joueurs avec un mode multijoueur en local",
+    "Système de combat : attaques, collisions et réactions physiques entre les loutres",
+    "Interactions avec les objets du décor pour rendre les parties plus dynamiques",
+    "Plusieurs mini-jeux avec leurs propres règles, reliés à un système de points commun",
+    "Classement en fin de partie pour désigner la loutre gagnante",
+    "Gestion de plusieurs manettes avec le Unity Input System",
+    "Synchronisation des joueurs et des objets en réseau avec Netcode for GameObjects",
+    "Travail en équipe de 7 personnes avec Git (branches, merges, gestion des conflits)",
     ],
-    photos: [],
+    photos: [
+      "/projects/otter-able/controlle manette.png",
+      "/projects/otter-able/touches clavierSouris.png",
+      "/projects/otter-able/planification jeux.png",
+    ],
+
+    video: "/projects/otter-able/Gameplay.mp4",
   },
   {
     slug: "app-fitness",

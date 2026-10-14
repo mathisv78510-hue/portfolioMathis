@@ -1,9 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getProjectBySlug, projects } from "../data";
 import { PageBlobs } from "../../../components/page-blobs";
+import { ProjectGallery } from "../../../components/project-gallery";
 
 function PhotoIcon() {
   return (
@@ -50,74 +50,75 @@ export default async function ProjectPage({
   }
 
   return (
-    <div className="project-detail-shell">
+    <div className="page-root">
       <PageBlobs />
-      <div className="project-detail">
+      <div className="back-nav">
         <Link href="/projets" className="back-link mono">
           ← Retour aux projets
         </Link>
-
-        <p className="eyebrow-tag mono">Projet</p>
-        <h1 className="project-detail-title">{project.title}</h1>
-
-        <ul className="project-tags" aria-label="Technologies utilisees">
-          {project.stack.map((tech) => (
-            <li key={tech}>{tech}</li>
-          ))}
-        </ul>
-
-        <p className="lede project-detail-lede">{project.longDescription}</p>
-
-        <div className="project-detail-meta">
-          <p className="meta-label mono">Role</p>
-          <p className="meta-value">{project.role}</p>
-        </div>
-
+      </div>
+      <main className="main-col">
+      <section>
         <div className="section-heading">
-          <span className="section-num">+</span>
+          <span className="section-num">01.</span>
+          <h1 className="section-title">{project.title}</h1>
+        </div>
+        <div className="content-card">
+          <ul className="project-tags" aria-label="Technologies utilisees">
+            {project.stack.map((tech) => (
+              <li key={tech}>{tech}</li>
+            ))}
+          </ul>
+
+          <p className="lede project-detail-lede">{project.longDescription}</p>
+
+          <div className="project-detail-meta">
+            <p className="meta-label mono">Role</p>
+            <p className="meta-value">{project.role}</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="section-heading">
+          <span className="section-num">02.</span>
           <h2 className="section-title">Apercu</h2>
         </div>
+        <div className="content-card">
+          {project.video && (
+            <video className="project-video" src={project.video} controls playsInline />
+          )}
 
-        {project.video && (
-          <video className="project-video" src={project.video} controls playsInline />
-        )}
+          {project.photos.length > 0 && (
+            <ProjectGallery photos={project.photos} title={project.title} />
+          )}
 
-        {project.photos.length > 0 && (
-          <div className="project-gallery">
-            {project.photos.map((src) => (
-              <div className="gallery-item" key={src}>
-                <Image
-                  src={src}
-                  alt={`Capture d'ecran du projet ${project.title}`}
-                  fill
-                  sizes="(min-width: 768px) 33vw, 100vw"
-                />
-              </div>
-            ))}
-          </div>
-        )}
+          {!project.video && project.photos.length === 0 && (
+            <div className="media-placeholder">
+              <PhotoIcon />
+              <p>
+                Aucune capture pour l&apos;instant. Depose des images ou une video dans{" "}
+                <code className="mono">public/projects/{project.slug}/</code>, puis reference-les
+                dans <code className="mono">src/app/projets/data.ts</code> (champs{" "}
+                <code className="mono">photos</code> et <code className="mono">video</code>).
+              </p>
+            </div>
+          )}
+        </div>
+      </section>
 
-        {!project.video && project.photos.length === 0 && (
-          <div className="media-placeholder">
-            <PhotoIcon />
-            <p>
-              Aucune capture pour l&apos;instant. Depose des images ou une video dans{" "}
-              <code className="mono">public/projects/{project.slug}/</code>, puis reference-les
-              dans <code className="mono">src/app/projets/data.ts</code> (champs{" "}
-              <code className="mono">photos</code> et <code className="mono">video</code>).
-            </p>
-          </div>
-        )}
-
+      <section>
         <div className="section-heading">
-          <span className="section-num">+</span>
+          <span className="section-num">03.</span>
           <h2 className="section-title">Points cles</h2>
         </div>
-        <ul className="feature-list">
-          {project.highlights.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
+        <div className="content-card">
+          <ul className="feature-list">
+            {project.highlights.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
 
         <div className="project-detail-footer">
           <Link href="/projets" className="btn">
@@ -127,7 +128,8 @@ export default async function ProjectPage({
             Me contacter
           </Link>
         </div>
-      </div>
+      </section>
+      </main>
     </div>
   );
 }
